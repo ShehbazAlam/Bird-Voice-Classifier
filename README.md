@@ -51,7 +51,7 @@ pip install -r requirements.txt
 
 Download the bird audio dataset and place it in the data directory. Ensure the dataset is organized appropriately for training and testing.
 
-##Usage
+## Usage
 To train the model, use the following command:
 
 ```bash
@@ -88,10 +88,10 @@ Contributions are welcome! If you have any improvements or suggestions, please c
 - Push to the branch: git push origin feature-branch-name.
 - Open a pull request.
 
-##License
+## License
 This project is licensed under the MIT License. See the LICENSE file for details.
 
-##Acknowledgements
+## Acknowledgements
 - [Original Dataset](https://www.kaggle.com/datasets/soumendraprasad/sound-of-114-species-of-birds-till-2022 "Original Dataset") - Link to the source of the bird audio dataset.
 - [Librosa](http://librosa.org "Librosa") - A Python library for audio and music analysis.
 - [TensorFlow](http://tensorflow.org "TensorFlow") - An open-source machine learning framework.
