@@ -38,7 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'bird_voice_classifier'
+    'social_django',
+    'bird_voice_classifier',
+    'app_admin',
+    'user'
 ]
 
 MIDDLEWARE = [
