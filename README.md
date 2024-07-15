@@ -72,7 +72,7 @@ The dataset used for this project consists of audio recordings of bird calls and
 ## Model
 The Bird Voice Classifier uses a convolutional neural network (CNN) to process the audio features and classify the bird species. The model architecture includes several convolutional layers followed by fully connected layers.
 
-##Results
+## Results
 The model achieves an accuracy of X% on the test dataset. Below is a summary of the model's performance:
 
 - Training Accuracy: X%
