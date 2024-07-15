@@ -6,7 +6,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('dev-admin/', admin.site.urls),
-    # path('admin/', include('app_admin.urls')),
+    path('admin/', include('app_admin.urls')),
     path('auth/', include('user.urls')),
     path('', include('bird_voice_classifier.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
