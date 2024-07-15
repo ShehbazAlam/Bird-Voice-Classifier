@@ -56,8 +56,8 @@ To train the model, use the following command:
 
 ```bash
 python train.py
-To evaluate the model, use the following command:
 ```
+To evaluate the model, use the following command:
 ```bash
 python evaluate.py
 ```
