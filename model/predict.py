@@ -1,7 +1,16 @@
+import os
+import json
+from pathlib import Path
+import librosa
+import numpy as np
+import tensorflow as tf
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+
 def prediction(audio_file):
 
     # Load the Prediction JSON File to Predict Target_Label
-    with open('/content/prediction.json', mode='r') as f:
+    with open('prediction.json', mode='r') as f:
         prediction_dict = json.load(f)
 
     # Extract the Audio_Signal and Sample_Rate from Input Audio
@@ -19,7 +28,7 @@ def prediction(audio_file):
     mfccs_tensors = tf.convert_to_tensor(mfccs_features, dtype=tf.float32)
 
     # Load the Model and Prediction
-    model = tf.keras.models.load_model('/content/model.h5')
+    model = tf.keras.models.load_model('model/trained_model.h5')
     prediction = model.predict(mfccs_tensors)
 
     # Find the Maximum Probability Value
@@ -28,3 +37,7 @@ def prediction(audio_file):
     # Find the Target_Label Name using Prediction_dict
     predicted_class = prediction_dict[str(target_label)]
     confidence = round(np.max(prediction)*100, 2)
+    print(f'Predicted Class : {predicted_class}')
+    print(f'Confidence : {confidence}%')
+
+prediction(os.path.join(BASE_DIR, 'dataset/voice_of_birds/voice_of_birds/Andean Guan_sound/Andean Guan3.mp3'))

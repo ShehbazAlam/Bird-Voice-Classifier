@@ -221,7 +221,7 @@ loss = history.history['loss']
 val_loss = history.history['val_loss']
 
 # Save the Model
-model.save('/content/model.h5')
+model.save('model/trained_model.h5')
 
 # Visualize the Acuuracy & Loss using Plots
 
