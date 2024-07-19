@@ -18,3 +18,6 @@ def login(request):
 
 def signup(request):
     return render(request, 'site/signup.html')
+
+def index(request):
+    return render(request, 'site/index.html')
