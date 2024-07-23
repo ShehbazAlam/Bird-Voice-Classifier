@@ -1,0 +1,12 @@
+.container{
+    margin: 10px 100px;
+    max-width: 80%;
+}
+
+.bird-img{
+    width: 90%;
+}
+
+.bird-name{
+    font-size: 35px;
+}
