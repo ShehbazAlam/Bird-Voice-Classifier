@@ -13,8 +13,8 @@ class site():
         pass
 
 
-def login(request):
-    return render(request, 'site/login.html')
+def predict(request):
+    return render(request, 'site/upload.html')
 
 def signup(request):
     return render(request, 'site/signup.html')

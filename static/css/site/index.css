@@ -10,7 +10,6 @@ body {
 header {
     background: #4CAF50;
     color: white;
-    padding: 1rem 0;
 }
 
 header .container {
@@ -44,10 +43,13 @@ header nav ul li a {
 }
 
 #hero {
-    background: url('bird-background.jpg') no-repeat center center/cover;
+    background: url('../../images/site/bird2.jpg') no-repeat center center/cover;
     color: white;
     text-align: center;
     padding: 5rem 0;
+    height: 85vh;
+    display: flex;
+    justify-content: center;
 }
 
 #hero h2 {
@@ -65,14 +67,20 @@ header nav ul li a {
     padding: 1rem 2rem;
     text-decoration: none;
     border-radius: 5px;
-    margin: 0.5rem;
+    margin: 50px 0;
 }
 
 #hero .btn:hover {
     background: #45a049;
 }
 
-#about, #features, #how-it-works, #contact {
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#features, #contact {
     padding: 3rem 0;
     text-align: center;
 }
@@ -81,6 +89,10 @@ header nav ul li a {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 2rem;
+}
+#features .container{
+    display: flex;
+    flex-direction: row;
 }
 
 #features .feature {
