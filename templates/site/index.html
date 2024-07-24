@@ -14,9 +14,9 @@
             class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-[#f0f3f4] text-[#111618] text-sm font-bold leading-normal tracking-[0.015em] w-full"
         
           >
-          <form method="POST" action="{% url "result" %}">
+          <form method="POST" action="{% url "result" %}" enctype="multipart/form-data">
             {% csrf_token %}
-            {{ form.file }}
+            <input type="file" accept=".mp3, .wav" name="bird-sound" id="bird-sound" required>
           </button>
           <button type="submit"
             class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-[#1cb5e3] text-[#111618] text-sm font-bold leading-normal tracking-[0.015em] w-full"
