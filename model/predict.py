@@ -39,5 +39,5 @@ def prediction(audio_file):
     confidence = round(np.max(prediction)*100, 2)
     print(f'Predicted Class : {predicted_class}')
     print(f'Confidence : {confidence}%')
+    return {"prediction": predicted_class, "confidence": confidence}
 
-prediction(os.path.join(BASE_DIR, 'dataset/voice_of_birds/voice_of_birds/Andean Guan_sound/Andean Guan3.mp3'))

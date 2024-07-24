@@ -14,13 +14,16 @@
             class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-[#f0f3f4] text-[#111618] text-sm font-bold leading-normal tracking-[0.015em] w-full"
         
           >
-          <input type="file" accept=".mp3 .wav" >
+          <form method="POST" action="{% url "result" %}">
+            {% csrf_token %}
+            {{ form.file }}
           </button>
-          <button
+          <button type="submit"
             class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-[#1cb5e3] text-[#111618] text-sm font-bold leading-normal tracking-[0.015em] w-full"
           >
             <span class="truncate">Upload</span>
           </button>
+          </form>
         </div>
       </div>
     </div>
