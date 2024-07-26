@@ -22,12 +22,13 @@ def result(request):
         file = request.FILES['bird-sound']
         
         fs = FileSystemStorage()
+        BASE_URL = "http://127.0.0.1:8000/"
         dir = './static/uploads'
         file_name = 'upload-'+generate_random_string(5)+'.mp3'
         file_path = f'{dir}/{file_name}'
         filename = fs.save(file_path, file)
         uploaded_file_url = fs.url(filename)
-        prediction = predict.prediction(uploaded_file_url)
+        prediction = predict.prediction('.' + uploaded_file_url)
 
         print(prediction)
         return render(request, 'site/result.html', {'prediction': prediction})

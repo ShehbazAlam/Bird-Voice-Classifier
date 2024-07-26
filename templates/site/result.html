@@ -6,11 +6,25 @@
 <link rel="stylesheet" href="{% static "css/site/result.css" %}">
 {% endblock css %}
 {% block content %}
+<div class="title">
+<h1 class="model-heading"><strong>Model's Prediction</strong></h1>
+</div>
 <div class="container">
-    <h1 class="bird-name">Bird Name: <strong>{{prediction.prediction}}</strong></h1>
+  <div class="image">
   <img class="bird-img" src="https://images.unsplash.com/photo-1486365227551-f3f90034a57c?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="A Blue Jay perched on a branch">
-  <p>The Blue Jay (Cyanocitta cristata) is a stunning and vocal bird native to North America. Known for its vibrant blue plumage and bold white chest, it's a common sight in woodlands and backyards.</p>
-  <p>These intelligent birds are known for their ability to mimic sounds, including calls of other birds and even human speech!</p>
-
+  </div>
+  <div class="bird-info">
+  <div class="result">
+    <h3 class="bird-name">Bird Name: <strong>{{prediction.prediction}}</strong></h3>
+    <h3 class="model">Model Confidence: <strong>{{prediction.confidence}}</strong></h3>
+  </div>
+  <div class="feedback">
+    <h1>How would you rate this prediction</h1>
+    <div class="feedback-btn">
+      <button class="btn correct">Accurate</button>
+      <button class="btn incorrect">Not Accurate</button>
+    </div>
+  </div>
+  </div>
 </div>
 {% endblock content %}
