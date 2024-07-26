@@ -15,7 +15,7 @@ class Prediction(models.Model):
         verbose_name_plural = ("Predictions")
 
     def __str__(self):
-        return self.name
+        return self.user.username
 
     def get_absolute_url(self):
         return reverse("Prediction_detail", kwargs={"pk": self.pk})

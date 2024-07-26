@@ -37,7 +37,5 @@ def prediction(audio_file):
     # Find the Target_Label Name using Prediction_dict
     predicted_class = prediction_dict[str(target_label)]
     confidence = round(np.max(prediction)*100, 2)
-    print(f'Predicted Class : {predicted_class}')
-    print(f'Confidence : {confidence}%')
     return {"prediction": predicted_class, "confidence": confidence}
 
