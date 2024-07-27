@@ -4,7 +4,7 @@ from .forms import FileUploadForm
 from django.core.files.storage import FileSystemStorage
 from .models import Prediction
 
-import os
+import json
 
 import random
 import string
@@ -38,7 +38,11 @@ def result(request):
         file = request.FILES['bird-sound']
         uploaded_file_url = upload_file_to_dir(file)
         prediction = predict.prediction('.' + uploaded_file_url)
-        print(prediction['prediction'])
+        
+        with open('bird_image_links.json', mode='r') as f:
+            bird_img_file = json.load(f)
+        bird_img = bird_img_file[prediction['prediction'].replace('_sound', '')]
+        prediction.update({'bird_img': bird_img, 'prediction': prediction['prediction'].replace('_sound', '')})
         add_prediction_record(user= request.user, file= file, result= prediction)
         return render(request, 'site/result.html', {'prediction': prediction})
         
