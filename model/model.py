@@ -35,7 +35,6 @@ def audio_to_tensors(audio_file):
 # Audio Directory Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 directory = os.path.join(BASE_DIR, 'dataset/voice_of_birds/voice_of_birds')
-print(directory)
 
 extracted_features = []
 
@@ -123,21 +122,21 @@ train_ds, validation_ds, test_ds = train_validation_test_split(dataset)
 
 # Visualize the Image and Label Batches from TensorFlow Dataset
 
-for audio_batch, label_batch in train_ds.take(1):
-    print(audio_batch.numpy()[0].shape)
-    print(audio_batch.numpy()[0])
-    print()
+# for audio_batch, label_batch in train_ds.take(1):
+#     print(audio_batch.numpy()[0].shape)
+#     print(audio_batch.numpy()[0])
+#     print()
 
-    print(label_batch.numpy().shape)
-    print(label_batch.numpy()[0])
-    print()
+#     print(label_batch.numpy().shape)
+#     print(label_batch.numpy()[0])
+#     print()
 
-    audio = librosa.feature.inverse.mfcc_to_audio(audio_batch.numpy())
+#     audio = librosa.feature.inverse.mfcc_to_audio(audio_batch.numpy())
 
-    # Plot the reconstructed audio waveform
-    plt.figure(figsize=(10, 4))
-    librosa.display.waveshow(audio)
-    plt.show()
+#     # Plot the reconstructed audio waveform
+#     plt.figure(figsize=(10, 4))
+#     librosa.display.waveshow(audio)
+#     plt.show()
 
 # Building an Optimized Data Pipeline for Enhanced Performance
 
