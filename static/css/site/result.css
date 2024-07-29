@@ -69,3 +69,14 @@
 .incorrect{
     background-color: red;
 }
+
+.popup{
+    z-index: 9;
+    background-color: aliceblue;
+    width: 50%;
+    height: 80vh;
+    margin: auto;
+    padding: auto;
+    display: flex;
+    flex-direction: column;
+}

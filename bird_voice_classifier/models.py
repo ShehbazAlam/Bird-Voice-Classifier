@@ -19,3 +19,21 @@ class Prediction(models.Model):
 
     def get_absolute_url(self):
         return reverse("Prediction_detail", kwargs={"pk": self.pk})
+
+
+class Feedback(models.Model):
+
+    predictiion = models.ForeignKey("bird_voice_classifier.Prediction", verbose_name=("Feedback On"), on_delete=models.CASCADE)
+    review = models.CharField(("Feedback Review"), max_length=50)
+    desc = models.TextField(("Feedback Description"), blank=True)
+    correction = models.CharField(("Correct Result"), max_length=50, blank=True)
+
+    class Meta:
+        verbose_name = ("Feedback")
+        verbose_name_plural = ("Feedbacks")
+
+    def __str__(self):
+        return self.predictiion.user.username
+
+    def get_absolute_url(self):
+        return reverse("Feedback_detail", kwargs={"pk": self.pk})

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Prediction
+from .models import Prediction, Feedback
 
 # Register your models here.
-admin.site.register(Prediction)
+admin.site.register((Prediction, Feedback))

@@ -1,8 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from model import predict
 from .forms import FileUploadForm
 from django.core.files.storage import FileSystemStorage
-from .models import Prediction
+from .models import Prediction, Feedback
 
 import json
 
@@ -48,3 +48,21 @@ def result(request):
         
     else:
         return render(request, 'site/result.html')
+
+
+def feedback(request):
+    if request.method == "POST":
+        parent = request['prediction']
+        review = request['review']
+        desc = request['desc']
+        correction = request['correction']
+
+        new_feedback = Feedback(parent, review, desc, correction)
+        new_feedback.save()
+        
+        message ="Thank You for your feedback"
+
+        return redirect(request, {'message': message})
+    
+    return redirect(request)
+    
