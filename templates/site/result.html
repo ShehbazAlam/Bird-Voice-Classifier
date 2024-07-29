@@ -9,6 +9,10 @@
 <div class="title">
 <h1 class="model-heading"><strong>Model's Prediction</strong></h1>
 </div>
+
+{% if message %}
+<p>{{message}}</p>
+{% endif %}
 <div class="container">
   <div class="image">
   <img class="bird-img" src="{{prediction.bird_img}}">
@@ -21,21 +25,49 @@
   <div class="feedback">
     <h1>How would you rate this prediction</h1>
     <div class="feedback-btn">
-      <button class="btn correct">Accurate</button>
-      <button class="btn incorrect">Not Accurate</button>
+      <form action="{% url "feedback" %}" method="post">
+        {% csrf_token %}
+        <input type="text" name="prediction" id="prediction" value="{{prediction_id}}" hidden>
+        <input type="text" name="review" id="review" value="correct" hidden>
+        <input type="text" name="desc" id="review" hidden>
+        <input type="text" name="correction" id="review" hidden>
+      <button type="submit" class="correct">Accurate</button>
+      </form>
+      <button class="btn incorrect" onclick="displayPopup()">Not Accurate</button>
     </div>
   </div>
   </div>
 </div>
 
 <div class="popup">
-  <form action="" method="post">
+  <div class="title">
+    <h1>Tell us what you think about the model</h1>
+  </div>
+  <form action="{% url "feedback" %}" method="post">
+    {% csrf_token %}
+    <input type="text" name="prediction" id="prediction" value="{{prediction_id}}" hidden>
+    <input type="text" name="review" id="review" value="incorrect" hidden>
     <label for="desc">Review</label>
-    <textarea name="desc" id="desc"></textarea>
+    <textarea name="desc" id="desc" cols="4"></textarea>
     <label for="correct">Correct Answer</label>
     <input type="text" name="correction" id="correct"></input>
 
-    <button type="submit" class="btn-submit">Submit Feedback</button>
+    <div class="btns">
+      <button type="submit" class="btn-submit">Submit Feedback</button>
+      <p class="btn-cancel" onclick="closePopup()">Cancel</p>
+    </div>
   </form>
 </div>
+
+<script>
+  function displayPopup() {
+    popup = document.querySelector('.popup');
+    popup.style.display = 'block';
+  }
+
+  function closePopup() {
+    popup = document.querySelector('.popup');
+    popup.style.display = 'none';
+  }
+</script>
 {% endblock content %}

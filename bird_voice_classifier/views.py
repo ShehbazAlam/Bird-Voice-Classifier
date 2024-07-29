@@ -26,8 +26,9 @@ def upload_file_to_dir(file):
     return uploaded_file_url
 
 def add_prediction_record(file, user, result):
-    new_prediction = Prediction(user = user, file = file, result = result['prediction'], confidence = result['confidence'])
+    new_prediction = Prediction(user= user, file = file, result = result['prediction'], confidence = result['confidence'])
     new_prediction.save()
+    return new_prediction.id
 
 def index(request):
     form = FileUploadForm
@@ -43,8 +44,8 @@ def result(request):
             bird_img_file = json.load(f)
         bird_img = bird_img_file[prediction['prediction'].replace('_sound', '')]
         prediction.update({'bird_img': bird_img, 'prediction': prediction['prediction'].replace('_sound', '')})
-        add_prediction_record(user= request.user, file= file, result= prediction)
-        return render(request, 'site/result.html', {'prediction': prediction})
+        pid = add_prediction_record(user= request.user, file= file, result= prediction)
+        return render(request, 'site/result.html', {'prediction': prediction, 'prediction_id': pid})
         
     else:
         return render(request, 'site/result.html')
@@ -52,12 +53,14 @@ def result(request):
 
 def feedback(request):
     if request.method == "POST":
-        parent = request['prediction']
-        review = request['review']
-        desc = request['desc']
-        correction = request['correction']
+        pid = request.POST['prediction']
+        print(pid)
+        review = request.POST['review']
+        desc = request.POST['desc']
+        correction = request.POST['correction']
 
-        new_feedback = Feedback(parent, review, desc, correction)
+        parent = Prediction.objects.get(id = pid)
+        new_feedback = Feedback(predictiion = parent, review= review, desc= desc, correction= correction)
         new_feedback.save()
         
         message ="Thank You for your feedback"

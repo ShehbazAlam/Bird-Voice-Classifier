@@ -52,6 +52,10 @@
     margin-top: 10px;
 }
 
+.feedback-btn form{
+    width: 50%;
+}
+
 .btn{
     width: 50%;
     padding: auto;
@@ -63,7 +67,12 @@
 
 .correct{
     background-color: green;
-
+    width: 100%;
+    padding: auto;
+    text-align: center;
+    border: 1px solid white;
+    border-radius: 10px;
+    height: 50px;
 }
 
 .incorrect{
@@ -71,12 +80,57 @@
 }
 
 .popup{
-    z-index: 9;
+    display: none;
+    z-index: 9999;
+    position: absolute;
     background-color: aliceblue;
-    width: 50%;
-    height: 80vh;
-    margin: auto;
+    width: 40%;
+    margin: 10% 25%;
     padding: auto;
+    border-radius: 15px;
+}
+
+.popup form{
     display: flex;
     flex-direction: column;
+    width: 80%;
+    margin: 0 10% 10% 10%;
+}
+
+.popup form input, 
+.popup form textarea{
+    border-radius: 5px;
+}
+
+.btns{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    gap: 1%;
+}
+
+.btn-submit{
+    width: 70%;
+    height: 50px;
+    background-color: green;
+    border: 1px solid green;
+    border-radius: 5px;
+}
+
+.btn-cancel{
+    width: 29%;
+    height: 50px;
+    background-color: red;
+    border: 1px solid red;
+    border-radius: 5px;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-submit:hover,
+.btn-cancel:hover{
+    background-color: transparent;
+    cursor: pointer;
 }
