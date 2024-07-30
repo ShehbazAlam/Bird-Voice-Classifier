@@ -6,11 +6,13 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.views import View
 from django.contrib.auth.decorators import login_required
 
+from user.models import Profile
+
 from .forms import RegisterForm, LoginForm, UpdateUserForm, UpdateProfileForm
 
 
 def home(request):
-    return render(request, 'auth/home.html')
+    return render(request, 'site/index.html')
 
 
 class RegisterView(View):
@@ -92,6 +94,7 @@ def profile(request):
             return redirect(to='users-profile')
     else:
         user_form = UpdateUserForm(instance=request.user)
-        profile_form = UpdateProfileForm(instance=request.user.profile)
+        profile, created = Profile.objects.get_or_create(user=request.user)
+        profile_form = UpdateProfileForm(instance=profile)
 
     return render(request, 'auth/profile.html', {'user_form': user_form, 'profile_form': profile_form})

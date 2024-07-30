@@ -3,6 +3,7 @@ from model import predict
 from .forms import FileUploadForm
 from django.core.files.storage import FileSystemStorage
 from .models import Prediction, Feedback
+from django.contrib.auth.decorators import login_required
 
 import json
 
@@ -34,6 +35,7 @@ def index(request):
     form = FileUploadForm
     return render(request, 'site/index.html', {"form": form})
 
+@login_required(login_url= '/auth/login')
 def result(request):
     if request.method == "POST" and request.FILES['bird-sound']:
         file = request.FILES['bird-sound']
@@ -45,7 +47,7 @@ def result(request):
         bird_img = bird_img_file[prediction['prediction'].replace('_sound', '')]
         prediction.update({'bird_img': bird_img, 'prediction': prediction['prediction'].replace('_sound', '')})
         pid = add_prediction_record(user= request.user, file= file, result= prediction)
-        return render(request, 'site/result.html', {'prediction': prediction, 'prediction_id': pid})
+        return render(request, 'site/result.html', {'prediction': prediction, 'prediction_id': pid, 'audio': '.'+ uploaded_file_url})
         
     else:
         return render(request, 'site/result.html')
