@@ -7,6 +7,7 @@ from django.views import View
 from django.contrib.auth.decorators import login_required
 
 from user.models import Profile
+from bird_voice_classifier.models import Prediction
 
 from .forms import RegisterForm, LoginForm, UpdateUserForm, UpdateProfileForm
 
@@ -18,7 +19,7 @@ def home(request):
 class RegisterView(View):
     form_class = RegisterForm
     initial = {'key': 'value'}
-    template_name = 'auth/signup.html'
+    template_name = 'user/signup.html'
 
     def dispatch(self, request, *args, **kwargs):
         # will redirect to the home page if a user tries to access the register page while logged in
@@ -65,9 +66,9 @@ class CustomLoginView(LoginView):
 
 
 class ResetPasswordView(SuccessMessageMixin, PasswordResetView):
-    template_name = 'auth/password_reset.html'
-    email_template_name = 'auth/password_reset_email.html'
-    subject_template_name = 'auth/password_reset_subject'
+    template_name = 'user/password_reset.html'
+    email_template_name = 'user/password_reset_email.html'
+    subject_template_name = 'user/password_reset_subject'
     success_message = "We've emailed you instructions for setting your password, " \
                       "if an account exists with the email you entered. You should receive them shortly." \
                       " If you don't receive an email, " \
@@ -76,7 +77,7 @@ class ResetPasswordView(SuccessMessageMixin, PasswordResetView):
 
 
 class ChangePasswordView(SuccessMessageMixin, PasswordChangeView):
-    template_name = 'auth/change_password.html'
+    template_name = 'user/change_password.html'
     success_message = "Successfully Changed Your Password"
     success_url = reverse_lazy('users-home')
 
@@ -97,4 +98,10 @@ def profile(request):
         profile, created = Profile.objects.get_or_create(user=request.user)
         profile_form = UpdateProfileForm(instance=profile)
 
-    return render(request, 'auth/profile.html', {'user_form': user_form, 'profile_form': profile_form})
+    return render(request, 'user/profile.html', {'user_form': user_form, 'profile_form': profile_form})
+
+
+@login_required
+def prediction_list(request):
+    pList = Prediction.objects.filter(user= request.user)
+    return render(request, 'user/list.html', {'list': pList})

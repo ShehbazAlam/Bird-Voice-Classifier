@@ -46,7 +46,7 @@ def result(request):
             bird_img_file = json.load(f)
         bird_img = bird_img_file[prediction['prediction'].replace('_sound', '')]
         prediction.update({'bird_img': bird_img, 'prediction': prediction['prediction'].replace('_sound', '')})
-        pid = add_prediction_record(user= request.user, file= file, result= prediction)
+        pid = add_prediction_record(user= request.user, file= uploaded_file_url, result= prediction)
         return render(request, 'site/result.html', {'prediction': prediction, 'prediction_id': pid, 'audio': '.'+ uploaded_file_url})
         
     else:
