@@ -10,4 +10,4 @@ urlpatterns = [
     path('user-details', user_detail, name='user_detail'),
     path('predictions-list', predications_list, name="prediction_list"),
     path('prediction-detail', prediction_detail, name='prediction_detail')
-]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+]
