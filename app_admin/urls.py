@@ -7,7 +7,7 @@ from app_admin.views import dashboard, user_list, user_detail, predications_list
 urlpatterns = [
     path('dashboard', dashboard, name="dashboard"),
     path('user-list', user_list, name='user_list'),
-    path('user-details', user_detail, name='user_detail'),
+    path('user-details/<str:username>', user_detail, name='user_detail'),
     path('predictions-list', predications_list, name="prediction_list"),
     path('prediction-detail', prediction_detail, name='prediction_detail')
 ]

@@ -21,15 +21,17 @@
     </thead>
     <tbody>
         {% for item in list %}
-      <tr>
-        <th scope="row">{{forloop.counter}}</th>
-        <td scope="row">{{item.username}}</td>
-        <td scope="row">{{item.email}}</td>
-        <td scope="row"><div
-          class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10"
-          style='background-image: url("{{item.profile.avatar.url}}");'
-        ></div></td>
-      </tr>
+      <a href="{% url "user_detail" item.username %}">
+        <tr>
+          <th scope="row">{{forloop.counter}}</th>
+          <td scope="row">{{item.username}}</td>
+          <td scope="row">{{item.email}}</td>
+          <td scope="row"><div
+            class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10"
+            style='background-image: url("{{item.profile.avatar.url}}");'
+          ></div></td>
+        </tr>
+      </a>
       {% endfor %}
     </tbody>
   </table>

@@ -9,14 +9,17 @@ def dashboard(request):
 
 def user_list(request):
     users = User.objects.all()
-    return render(request, 'dev-admin/user-list.html', {'list': users})
+    return render(request, 'app-admin/user-list.html', {'list': users})
 
-def user_detail(request):
-    pass
+def user_detail(request, username):
+    user = User.objects.get(username = username)
+    predictions_count = Prediction.objects.filter(user = user).count()
+
+    return render(request, 'app-admin/user-details.html', {'user': user, 'prediction_count': predictions_count})
 
 def predications_list(request):
     predictions = Prediction.objects.all()
-    return render(request, 'dev-admin/predictions.html', {'list': predictions})
+    return render(request, 'app-admin/predictions.html', {'list': predictions})
 
 def prediction_detail(request):
     pass
