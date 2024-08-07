@@ -1,0 +1,9 @@
+.dashboard-header {
+    background: #007bff;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+.card {
+    margin: 20px 0;
+}

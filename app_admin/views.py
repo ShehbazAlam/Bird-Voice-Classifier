@@ -5,7 +5,10 @@ from django.contrib.auth.models import User
 # Create your views here.
 
 def dashboard(request):
-    pass
+    prediction_count = Prediction.objects.all().count()
+    feedback_count = Feedback.objects.all().count()
+    user_count = User.objects.all().count()
+    return render(request, 'app-admin/dashboard.html', {'prediction_count': prediction_count, 'feedback_count': feedback_count, 'user_count': user_count})
 
 def user_list(request):
     users = User.objects.all()
@@ -16,9 +19,9 @@ def user_detail(request, username):
     predictions_count = Prediction.objects.filter(user = user).count()
     predictions = Prediction.objects.filter(user = user)
     feedback_count = 0
-    for prediction in predictions:
-        if Feedback.objects.get(predictiion= prediction).exists():
-            feedback_count += 1
+    # for prediction in predictions:
+    #     if Feedback.objects.get(predictiion= prediction).exists():
+    #         feedback_count += 1
 
     return render(request, 'app-admin/user-details.html', {'user': user, 'prediction_count': predictions_count, 'feedback_count': feedback_count})
 
