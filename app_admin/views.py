@@ -31,3 +31,7 @@ def predications_list(request):
 
 def prediction_detail(request):
     pass
+
+def feedback_list(request):
+    feedbacks = Feedback.objects.all()
+    return render(request, 'app-admin/feedback_list.html', {'list': feedbacks})
