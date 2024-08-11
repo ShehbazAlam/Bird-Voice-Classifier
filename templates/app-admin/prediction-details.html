@@ -1,9 +1,45 @@
 {% extends "./base.html" %}
 
-{% block title %}Prediction Details{% endblock title %}
+{% load static %}
 
-{% block css %}{% endblock css %}
+{% block title %}
+  Prediction Details
+{% endblock title %}
 
-{% block js %}{% endblock js %}
+{% block css %}
+<link rel="stylesheet" href="{% static "css/site/result.css" %}">
+{% endblock css %}
+{% block content %}
+<div class="title">
+<h1 class="model-heading"><strong>Prediction Details</strong></h1>
+</div>
 
-{% block content %}{% endblock content %}
+{% if message %}
+<p>{{message}}</p>
+{% endif %}
+<div class="container">
+  <div class="image">
+  <img class="bird-img" src="{{prediction.bird_img}}">
+  </div>
+  <div class="bird-info">
+  <div class="result">
+    <h3 class="bird-name">User: <strong>{{prediction.user}}</strong></h3>
+    <h3 class="bird-name">Date and Time: <strong>{{prediction.dateAndTime}}</strong></h3>
+
+    <h3 class="bird-name">Result: <strong>{{prediction.result}}</strong></h3>
+    <h3 class="model">Model Confidence: <strong>{{prediction.confidence}}</strong></h3>
+  </div>
+  <div class="sound">
+    <audio src="{{audio}}" controls></audio>
+  </div>
+  {% if feedback %}
+  <div class="reult">
+  <h3 class="bird-name">User Feedback: <strong>{{feedback.review}}</strong></h3>
+  <h3 class="bird-name">Description: <strong>{{feedback.desc}}</strong></h3>
+  <h3 class="bird-name">User Correction: <strong>{{feedback.correction}}</strong></h3>
+  </div>
+  {% endif %}
+  </div>
+</div>
+
+{% endblock content %}

@@ -26,12 +26,14 @@
     <tbody>
         {% for item in list %}
       <tr>
+        <a href='{% url "prediction_detail" item.id %}'>
         <th scope="row">{{forloop.counter}}</th>
         <td scope="row">{{item.dateAndTime}}</td>
         <td scope="row">{{item.user}}</th>
         <td scope="row"><audio src="{{item.file}}" controls></audio></td>
         <td scope="row">{{item.result}}</td>
         <td scope="row">{{item.confidence}}</td>
+        </a>
       </tr>
       {% endfor %}
     </tbody>

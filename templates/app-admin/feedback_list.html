@@ -20,6 +20,7 @@
         <th scope="col">User</th>
         <th scope="col">Feedback</th>
         <th scope="col">Result</th>
+        <th scope="col">Correct Answer</th>
         <th scope="col">Feedback Description</th>
       </tr>
     </thead>
@@ -31,6 +32,7 @@
         <td scope="row">{{item.prediction.user.username}}</th>
         <td scope="row"><audio src="{{item.review}}" controls></audio></td>
         <td scope="row">{{item.prediction.result}}</td>
+        <td scope="row">{{item.correction}}</td>
         <td scope="row">{{item.desc}}</td>
       </tr>
       {% endfor %}
