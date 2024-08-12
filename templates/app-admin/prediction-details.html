@@ -19,7 +19,7 @@
 {% endif %}
 <div class="container">
   <div class="image">
-  <img class="bird-img" src="{{prediction.bird_img}}">
+  <img class="bird-img" src="{{bird_img}}">
   </div>
   <div class="bird-info">
   <div class="result">
@@ -30,10 +30,10 @@
     <h3 class="model">Model Confidence: <strong>{{prediction.confidence}}</strong></h3>
   </div>
   <div class="sound">
-    <audio src="{{audio}}" controls></audio>
+    <audio src="{{prediction.file}}" controls></audio>
   </div>
   {% if feedback %}
-  <div class="reult">
+  <div class="result">
   <h3 class="bird-name">User Feedback: <strong>{{feedback.review}}</strong></h3>
   <h3 class="bird-name">Description: <strong>{{feedback.desc}}</strong></h3>
   <h3 class="bird-name">User Correction: <strong>{{feedback.correction}}</strong></h3>

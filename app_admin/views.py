@@ -1,3 +1,4 @@
+import json
 from django.shortcuts import render
 from bird_voice_classifier.models import Prediction, Feedback
 from django.contrib.auth.models import User
@@ -20,7 +21,7 @@ def user_detail(request, username):
     predictions = Prediction.objects.filter(user = user)
     feedback_count = 0
     for prediction in predictions:
-        if Feedback.objects.get(predictiion= prediction).exists():
+        if Feedback.objects.filter(predictiion= prediction).exists():
             feedback_count += 1
 
     return render(request, 'app-admin/user-details.html', {'user': user, 'prediction_count': predictions_count, 'feedback_count': feedback_count, 'predictions': predictions})
@@ -31,10 +32,13 @@ def predications_list(request):
 
 def prediction_detail(request, pid):
     prediction = Prediction.objects.get(id = pid)
+    with open('bird_image_links.json', mode='r') as f:
+            bird_img_file = json.load(f)
+    bird_img = bird_img_file[prediction.result]
     feedback = {}
-    if Feedback.objects.get(predictiion = prediction).exists():
+    if Feedback.objects.filter(predictiion = prediction).exists():
         feedback = Feedback.objects.get(predictiion = prediction)
-    return render(request, 'app-admin/prediction-details.html', {'prediction': prediction, 'feedback': feedback})
+    return render(request, 'app-admin/prediction-details.html', {'prediction': prediction, 'feedback': feedback, 'bird_img': bird_img})
 
 def feedback_list(request):
     feedbacks = Feedback.objects.all()

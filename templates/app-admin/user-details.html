@@ -45,8 +45,8 @@
                
             </div>
         </div>
-    </div>
-    {% if predictions %}
+        {% if predictions %}
+    <h1>Users Predictions</h1>
     <table class="table">
         <thead>
           <tr>
@@ -74,6 +74,37 @@
         </tbody>
       </table>
     {% endif %}
+    {% if feedbacks %}
+    <h1>Users Feedbacks</h1>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Prediction</th>
+            <th scope="col">User</th>
+            <th scope="col">Feedback</th>
+            <th scope="col">Result</th>
+            <th scope="col">Correct Answer</th>
+            <th scope="col">Feedback Description</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for item in feedbacks %}
+          <tr>
+            <th scope="row">{{forloop.counter}}</th>
+            <td scope="row">{{item.prediction}}</td>
+            <td scope="row">{{item.prediction.user.username}}</th>
+            <td scope="row"><audio src="{{item.review}}" controls></audio></td>
+            <td scope="row">{{item.prediction.result}}</td>
+            <td scope="row">{{item.correction}}</td>
+            <td scope="row">{{item.desc}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% endif %}
+    </div>
+    
 </section>
 
 {% endblock content %}

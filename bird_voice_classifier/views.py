@@ -56,7 +56,6 @@ def result(request):
 def feedback(request):
     if request.method == "POST":
         pid = request.POST['prediction']
-        print(pid)
         review = request.POST['review']
         desc = request.POST['desc']
         correction = request.POST['correction']
@@ -67,7 +66,7 @@ def feedback(request):
         
         message ="Thank You for your feedback"
 
-        return redirect(request, {'message': message})
+        return render(request, 'site/index.html', {'message': message})
     
-    return redirect(request)
+    return redirect('')
     

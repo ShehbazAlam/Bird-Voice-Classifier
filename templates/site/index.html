@@ -7,6 +7,9 @@
 
 
 <div class="px-40 flex flex-1 justify-center py-5">
+  {% if message %}
+  <p>{{message}}</p>
+  {% endif %}
     <div class="layout-content-container flex flex-col w-[512px] max-w-[512px] py-5 max-w-[960px] flex-1">
       <h1 class="text-[#111618] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 text-left pb-3 pt-5">Upload a recording</h1>
       <p class="text-[#111618] text-base font-normal leading-normal pb-3 pt-1 px-4">We'll tell you what bird it is. Should be an MP3 file, and under 10MB.</p>
