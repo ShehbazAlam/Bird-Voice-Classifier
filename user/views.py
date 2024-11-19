@@ -82,7 +82,7 @@ class ChangePasswordView(SuccessMessageMixin, PasswordChangeView):
     success_url = reverse_lazy('users-home')
 
 
-@login_required
+@login_required(login_url= '/auth/login')
 def profile(request):
     if request.method == 'POST':
         user_form = UpdateUserForm(request.POST, instance=request.user)
@@ -101,7 +101,7 @@ def profile(request):
     return render(request, 'user/profile.html', {'user_form': user_form, 'profile_form': profile_form})
 
 
-@login_required
+@login_required(login_url= '/auth/login')
 def prediction_list(request):
     pList = Prediction.objects.filter(user= request.user)
     return render(request, 'user/list.html', {'list': pList})

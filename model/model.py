@@ -120,24 +120,6 @@ def train_validation_test_split(dataset, train_size=0.8, validation_size=0.1, te
 # Apply the Function in Potato Dataset
 train_ds, validation_ds, test_ds = train_validation_test_split(dataset)
 
-# Visualize the Image and Label Batches from TensorFlow Dataset
-
-# for audio_batch, label_batch in train_ds.take(1):
-#     print(audio_batch.numpy()[0].shape)
-#     print(audio_batch.numpy()[0])
-#     print()
-
-#     print(label_batch.numpy().shape)
-#     print(label_batch.numpy()[0])
-#     print()
-
-#     audio = librosa.feature.inverse.mfcc_to_audio(audio_batch.numpy())
-
-#     # Plot the reconstructed audio waveform
-#     plt.figure(figsize=(10, 4))
-#     librosa.display.waveshow(audio)
-#     plt.show()
-
 # Building an Optimized Data Pipeline for Enhanced Performance
 
 # Training Dataset
